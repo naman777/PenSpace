@@ -18,9 +18,7 @@ export const Signin = ()=>{
           try {
             const token = localStorage.getItem("token");
             const response = await axios.post(BACKEND_URL+"/api/v1/user/me", {
-                headers: {
-                    "Authorization": "Bearer "+token 
-                }
+                token,
             });
       
             if (response.status) {
@@ -31,7 +29,7 @@ export const Signin = ()=>{
           }
         };
       
-        fetchData(); // Call the async function immediately
+        fetchData(); 
       }, []);
 
 

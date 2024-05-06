@@ -95,3 +95,22 @@ userRouter.post('/signup', async (c) => {
   
   })
   
+  userRouter.post("/me", async (c)=>{
+    
+    
+    let body = await c.req.json();
+    console.log(body)
+    let token = body.token
+    try {
+        const user = await verify(token,c.env.JWT_SECRET);
+        c.status(200)
+        return c.json({user:user});
+    }
+    catch (error) {
+      c.status(411);
+      return c.json({ error: "token not valid" });
+  }
+  
+  
+
+})

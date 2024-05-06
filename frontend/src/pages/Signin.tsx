@@ -8,7 +8,7 @@ import axios from "axios"
 export const Signin = ()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    
 
     const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ export const Signin = ()=>{
                                 localStorage.setItem('token', response.data.jwt);
                                 navigate("/blogs");
                             } else {
-                                setError(response.data.message);
+                                
                             }
         
                         }catch (error:any) {

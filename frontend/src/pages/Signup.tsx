@@ -9,7 +9,7 @@ export const Signup = ()=>{
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    
 
     const navigate = useNavigate();
 
@@ -42,11 +42,11 @@ export const Signup = ()=>{
                                 localStorage.setItem('token', response.data.jwt);
                                 navigate("/blogs");
                             } else {
-                                setError(response.data.message);
+                                
                             }
         
                         }catch (error:any) {
-                            alert(`${error.error}`)
+                            alert(`${error}`)
                         }
                     }}>Submit</button>
                 </div>

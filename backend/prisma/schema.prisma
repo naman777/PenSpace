@@ -13,7 +13,16 @@ model User {
   name     String
   password String
   posts    Post[]
+  about String @default("")
+  following Following[]
 }
+
+model Following{
+  id String @id @default(uuid())
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
 
 model Post {
   id        String   @id @default(uuid())
@@ -22,4 +31,5 @@ model Post {
   published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
+  date DateTime @default(now())
 }

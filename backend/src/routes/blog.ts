@@ -56,7 +56,8 @@ blogRouter.use("/*", async (c,next)=>{
           name:true
         }
       },
-      id:true
+      id:true,
+      date:true
     }
 
 	});
@@ -79,7 +80,8 @@ blogRouter.use("/*", async (c,next)=>{
               name:true
             }
           },
-          id:true
+          id:true,
+          date:true
         }
       })
       
@@ -104,7 +106,7 @@ blogRouter.use("/*", async (c,next)=>{
             title: body.title,
             content: body.content,
             authorId: authorId 
-
+            
         }
       })
 

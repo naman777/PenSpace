@@ -6,7 +6,30 @@ import { useBlogs } from "../hooks/index.ts";
 export const Blogs = () => {
     const { loading, blogs } = useBlogs();
 
-    if (loading) {
+    function formatDate(dateString: string): string {
+        // Parse the ISO 8601 date string
+        const date: Date = new Date(dateString);
+        
+        // Array of month names
+        const months: string[] = [
+          "January", "February", "March",
+          "April", "May", "June", "July",
+          "August", "September", "October",
+          "November", "December"
+        ];
+      
+        // Extract day, month, and year
+        const day: number = date.getDate();
+        const monthIndex: number = date.getMonth();
+        const year: number = date.getFullYear();
+      
+        // Format the date
+        const formattedDate: string = `${day} ${months[monthIndex]} ${year}`;
+      
+        return formattedDate;
+      }
+
+      if (loading) {
         return <div>
             <Appbar /> 
             <div  className="flex justify-center">
@@ -31,9 +54,15 @@ export const Blogs = () => {
                     authorName={blog.author.name || "Anonymous"}
                     title={blog.title}
                     content={blog.content}
-                    publishedDate={"2nd Feb 2024"}
+                    publishedDate={formatDate(blog.date)}
+            
                 />)}
             </div>
         </div>
     </div>
+    
+      
 }
+
+    
+

@@ -5,6 +5,8 @@ import { Blog } from './pages/Blog.tsx'
 import { Blogs } from "./pages/Blogs.tsx";
 import { Publish } from "./pages/Publish.tsx"
 import HomePage from './pages/Home.tsx';
+import { Myblogs } from './pages/Myblogs.tsx';
+import { BlogEdit } from './pages/BlogEdit.tsx';
 
 function App() {
 
@@ -19,6 +21,8 @@ function App() {
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/publish" element={<Publish />} />
+          <Route path="/myblogs" element={<Myblogs/>} />
+          <Route path="/myblogs/:id" element={<BlogEdit />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -52,7 +52,7 @@ export const BlogEdit = () => {
                     <button
                         onClick={async () => {
                             const token = localStorage.getItem('token')
-                            await axios.post(`${BACKEND_URL}/api/v1/blog`, {
+                            await axios.put(`${BACKEND_URL}/api/v1/blog/${id}`, {
                                 title,
                                 content: description,
                                 id

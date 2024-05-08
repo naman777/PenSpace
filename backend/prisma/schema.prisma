@@ -15,14 +15,28 @@ model User {
   posts    Post[]
   about String @default("")
   following Following[]
+  followers Followers[]
+  followingCount Int @default(0)
+  followersCount Int @default(0)
 }
 
 model Following{
   id String @id @default(uuid())
   author User @relation(fields: [authorId], references: [id])
   authorId String
+  name String
+  email String
+  date DateTime
 }
 
+model Followers{
+  id String @id @default(uuid())
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+  name String
+  email String
+  date DateTime
+}
 
 model Post {
   id        String   @id @default(uuid())

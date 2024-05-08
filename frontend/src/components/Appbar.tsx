@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 export const Appbar = () => {
     const navigate = useNavigate()
     const email = localStorage.getItem('email');
-    return <div className="border-b flex justify-between px-10 py-4">
+    return <div className="border-b flex justify-between px-10 py-2 ">
         <Link to={'/blogs'} className="flex flex-col justify-center cursor-pointer">
                 PenSpace
         </Link>

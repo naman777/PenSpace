@@ -114,3 +114,145 @@ userRouter.post('/signup', async (c) => {
   
 
 })
+
+
+userRouter.get("/profile", async (c)=>{
+  let token = c.req.header("Authorization") || "";
+    token = token.split(" ")[1];
+  
+    try {
+        const user = await verify(token,c.env.JWT_SECRET);
+      
+      const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+      }).$extends(withAccelerate())
+
+      const authorId = user.id;
+
+      const profile = await prisma.user.findUnique({
+        where:{
+          id:authorId
+        },
+        select:{
+          id:true,
+          name:true,
+          email:true,
+          followersCount:true,
+          followingCount:true,
+          about:true
+        }
+      })
+
+      return c.json(profile);
+
+
+  }
+  catch (error) {
+    c.status(411);
+    return c.json({ error: "token not valid" });
+  }
+})
+
+userRouter.put("/profile", async (c)=>{
+  let token = c.req.header("Authorization") || "";
+    token = token.split(" ")[1];
+  
+    try {
+        const user = await verify(token,c.env.JWT_SECRET);
+      
+      const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+      }).$extends(withAccelerate())
+
+      const authorId = user.id;
+      const body = await c.req.json();
+
+      const profile = await prisma.user.update({
+        where:{
+          id:authorId
+        },
+        data:{
+          about:body.about
+        }
+      })
+
+      return c.json(profile);
+  }
+  catch (error) {
+    c.status(411);
+    return c.json({ error: "token not valid" });
+  }
+})
+
+userRouter.get("/profile/followers", async (c)=>{
+  let token = c.req.header("Authorization") || "";
+    token = token.split(" ")[1];
+  
+    try {
+        const user = await verify(token,c.env.JWT_SECRET);
+      
+      const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+      }).$extends(withAccelerate())
+
+      const authorId = user.id;
+
+      const profile = await prisma.user.findUnique({
+        where:{
+          id:authorId
+        },
+        select:{
+          id:true,
+          name:true,
+          email:true,
+          followersCount:true,
+          followers:true
+        }
+      })
+
+      return c.json(profile);
+
+
+  }
+  catch (error) {
+    c.status(411);
+    return c.json({ error: "token not valid" });
+  }
+})
+
+userRouter.get("/profile/followers", async (c)=>{
+  let token = c.req.header("Authorization") || "";
+    token = token.split(" ")[1];
+  
+    try {
+        const user = await verify(token,c.env.JWT_SECRET);
+      
+      const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+      }).$extends(withAccelerate())
+
+      const authorId = user.id;
+
+      const profile = await prisma.user.findUnique({
+        where:{
+          id:authorId
+        },
+        select:{
+          id:true,
+          name:true,
+          email:true,
+          followingCount:true,
+          following:true
+        }
+      })
+
+      return c.json(profile);
+
+
+  }
+  catch (error) {
+    c.status(411);
+    return c.json({ error: "token not valid" });
+  }
+})
+

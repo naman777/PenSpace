@@ -1,4 +1,3 @@
-import { Avatar } from "./BlogCard.tsx"
 import { Link, useNavigate } from "react-router-dom"
 
 export const Appbar = () => {

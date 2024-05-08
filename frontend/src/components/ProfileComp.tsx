@@ -19,7 +19,7 @@ export const ProfileComp: React.FC<ProfileProps> = ({
   about,
 }) => {
 
-  const [cabout, setcAbout] = useState('');
+  const [cabout, setcAbout] = useState(about);
   const navigate = useNavigate()
 
   return (
@@ -62,7 +62,7 @@ export const ProfileComp: React.FC<ProfileProps> = ({
     </div>
     <div className="mt-6">
       <h2 className="text-lg font-semibold">About</h2>
-      <TextEditor value={about} onChange={(e) => setcAbout(e.target.value)} />
+      <TextEditor value={cabout} onChange={(e) => setcAbout(e.target.value)} />
     </div>
     <button
       onClick={async () => {

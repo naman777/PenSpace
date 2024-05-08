@@ -4,12 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../config.ts";
 import { ChangeEvent } from "react";
+import { Spinner } from "../components/Spinner.tsx";
 
 export const BlogEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,6 +25,7 @@ export const BlogEdit = () => {
                 // Access data from the response object
                 setTitle(response.data.title);
                 setDescription(response.data.content);
+                setLoading(false);
 
             } catch (error) {
                 navigate("/blogs");
@@ -31,6 +34,19 @@ export const BlogEdit = () => {
 
         fetchData();
     }, []);
+
+    if (loading ) {
+        return <div>
+            <Appbar />
+        
+            <div className="h-screen flex flex-col justify-center">
+                
+                <div className="flex justify-center">
+                    <Spinner />
+                </div>
+            </div>
+        </div>
+    }
 
     return (
         <div>
